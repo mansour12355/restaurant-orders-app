@@ -1,6 +1,7 @@
 // Configuration
 const API_URL = '/api';
-const WS_URL = `ws://${window.location.host}`;
+const WS_URL = `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}`;
+
 
 
 // State
