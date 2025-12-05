@@ -1,6 +1,7 @@
 // Configuration
-const API_URL = 'http://localhost:3000/api';
-const WS_URL = 'ws://localhost:3000';
+const API_URL = '/api';
+const WS_URL = `ws://${window.location.host}`;
+
 
 // State
 let menuItems = [];
