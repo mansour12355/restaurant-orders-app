@@ -181,6 +181,25 @@ function setupDashboard() {
         openMenuItemModal();
     });
 
+    // Mobile sidebar toggle
+    const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (mobileSidebarToggle) {
+        mobileSidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                if (!sidebar.contains(e.target) && !mobileSidebarToggle.contains(e.target) && sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                }
+            }
+        });
+    }
+
     // Menu item form
     document.getElementById('cancelMenuItem').addEventListener('click', closeMenuItemModal);
     document.getElementById('menuItemForm').addEventListener('submit', handleMenuItemSubmit);
