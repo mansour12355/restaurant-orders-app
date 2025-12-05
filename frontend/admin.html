@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Delicious Eats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <h1>🍔 Admin Login</h1>
+            <p>Delicious Eats Dashboard</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required placeholder="admin">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Enter password">
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+                <div class="login-hint">
+                    Default: admin / admin123
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboard" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i data-lucide="utensils-crossed" class="header-icon"></i> Delicious Eats</h2>
+                <p class="admin-name" id="adminName">Admin</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-view="orders">
+                    <span class="nav-item-content">
+                        <i data-lucide="clipboard-list"></i>
+                        <span>Orders</span>
+                    </span>
+                    <span class="badge" id="pendingBadge">0</span>
+                </a>
+                <a href="#" class="nav-item" data-view="menu">
+                    <span class="nav-item-content">
+                        <i data-lucide="utensils"></i>
+                        <span>Menu Items</span>
+                    </span>
+                </a>
+                <a href="#" class="nav-item" onclick="logout()">
+                    <span class="nav-item-content">
+                        <i data-lucide="log-out"></i>
+                        <span>Logout</span>
+                    </span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <h1 id="viewTitle">Orders Management</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" id="addMenuItemBtn" style="display: none;">
+                        + Add Menu Item
+                    </button>
+                </div>
+            </header>
+
+            <!-- Orders View -->
+            <div class="view-content" id="ordersView">
+                <!-- Status Filter -->
+                <div class="status-filter">
+                    <button class="filter-btn active" data-status="all">All Orders</button>
+                    <button class="filter-btn" data-status="pending">Pending</button>
+                    <button class="filter-btn" data-status="preparing">Preparing</button>
+                    <button class="filter-btn" data-status="ready">Ready</button>
+                    <button class="filter-btn" data-status="completed">Completed</button>
+                </div>
+
+                <!-- Orders Grid -->
+                <div class="orders-grid" id="ordersGrid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu View -->
+            <div class="view-content" id="menuView" style="display: none;">
+                <div class="menu-grid" id="adminMenuGrid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Menu Item Modal -->
+    <div class="modal-overlay" id="menuItemModal">
+        <div class="modal">
+            <h2 id="menuModalTitle">Add Menu Item</h2>
+            <form id="menuItemForm">
+                <div class="form-group">
+                    <label for="itemName">Name *</label>
+                    <input type="text" id="itemName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemDescription">Description</label>
+                    <textarea id="itemDescription" rows="3"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="itemPrice">Price *</label>
+                        <input type="number" id="itemPrice" step="0.01" required min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemCategory">Category *</label>
+                        <select id="itemCategory" required>
+                            <option value="Burgers">Burgers</option>
+                            <option value="Pizza">Pizza</option>
+                            <option value="Salads">Salads</option>
+                            <option value="Sides">Sides</option>
+                            <option value="Drinks">Drinks</option>
+                            <option value="Desserts">Desserts</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemImageUrl">Image URL</label>
+                    <input type="url" id="itemImageUrl" placeholder="https://example.com/image.jpg">
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="itemAvailable" checked>
+                        Available for ordering
+                    </label>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancelMenuItem">Cancel</button>
+                    <button type="submit" class="btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
