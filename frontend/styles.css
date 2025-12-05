@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   /* Color Palette - Vibrant & Modern */
   --primary: #ff6b6b;
   --primary-dark: #ee5a52;
@@ -1124,7 +1124,6 @@ footer p {
   
   .add-to-cart-btn {
     padding: 0.8rem;
-    font-size: 0.95rem;
   }
   
   /* Cart Sidebar */
@@ -1285,9 +1284,7 @@ footer p {
   footer {
     padding-bottom: max(var(--spacing-xl), env(safe-area-inset-bottom));
   }
-}
-
-/* ==================== LOADING SPINNER ==================== */
+}/* ==================== LOADING SPINNER ==================== */
 
 .loading {
   display: flex;
